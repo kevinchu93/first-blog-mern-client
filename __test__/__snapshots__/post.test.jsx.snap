@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post component should render as expected 1`] = `
+<li>
+  <h2>
+    <Link
+      className="title"
+      replace={false}
+      to="/posts/post_id"
+    >
+      none
+    </Link>
+  </h2>
+  <p>
+    none
+  </p>
+  <p
+    className="author"
+  >
+    annonymous
+  </p>
+</li>
+`;
