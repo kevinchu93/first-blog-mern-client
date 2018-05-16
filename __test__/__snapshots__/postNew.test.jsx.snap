@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PostNew component should render as expected 1`] = `
+exports[`PostNew - shallow PostNew component should render as expected 1`] = `
 <Route
   render={[Function]}
 />

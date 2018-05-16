@@ -9,5 +9,6 @@ module.exports = {
       "components": [ "Link" ],
       "specialLink": [ "to" ]
     }],
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
   },
 };

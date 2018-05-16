@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Post component should render as expected 1`] = `
+exports[`Post - shallow Post component should render as expected - snapshot 1`] = `
 <li>
   <h2>
     <Link
@@ -8,16 +8,16 @@ exports[`Post component should render as expected 1`] = `
       replace={false}
       to="/posts/post_id"
     >
-      none
+      title
     </Link>
   </h2>
   <p>
-    none
+    body
   </p>
   <p
     className="author"
   >
-    annonymous
+    author
   </p>
 </li>
 `;

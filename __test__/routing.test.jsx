@@ -3,19 +3,9 @@ import React from 'react';
 import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
 import App from '../src/app';
-import Header from '../src/app/header';
 import Posts from '../src/app/posts';
 import PostDetail from '../src/app/postDetail';
 import PostNew from '../src/app/postNew';
-
-test('should render Header component', () => {
-  const component = mount(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(component.find(Header).length).toBe(1);
-});
 
 test('should render Posts component when visiting /', () => {
   const component = mount(

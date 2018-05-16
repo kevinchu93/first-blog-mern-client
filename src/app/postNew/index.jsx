@@ -10,7 +10,7 @@ class PostNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    fetch('http://localhost:10010/api/posts', {
+    return fetch('http://localhost:10010/api/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

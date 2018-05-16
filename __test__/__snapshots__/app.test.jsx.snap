@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App component should render as expected 1`] = `
+exports[`App Component - shallow App component should render as expected - snapshot 1`] = `
 <div>
   <Header />
   <div
@@ -21,8 +21,8 @@ exports[`App component should render as expected 1`] = `
       path="/posts/post_id"
     />
     <Route
+      component={[Function]}
       path="/post_new"
-      render={[Function]}
     />
   </div>
 </div>
