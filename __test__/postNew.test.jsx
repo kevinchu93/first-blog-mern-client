@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import { createMemoryHistory } from 'history';
 import PostNew from '../src/app/postNew';
-import { createMemoryHistory } from 'history'
 
 const mockPosts = [
   {
@@ -20,13 +20,16 @@ let wrapper;
 describe('PostNew - shallow', () => {
   beforeEach(() => {
     wrapper = shallow(<PostNew.WrappedComponent history={history} />);
-    fetch.mockResponse(JSON.stringify([mockPosts[0]]));
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve([
+        mockPosts[0],
+      ])
+    }));
   });
 
   afterEach(() => {
     jest.resetAllMocks();
     jest.restoreAllMocks();
-    fetch.resetMocks();
   });
 
   test('PostNew component should render as expected', () => {
@@ -37,8 +40,8 @@ describe('PostNew - shallow', () => {
     wrapper.instance().newPostTitle = { value: mockPosts[0].title };
     wrapper.instance().newPostBody = { value: mockPosts[0].body };
     return wrapper.instance().handleSubmit(mockEvent).then(() => {
-      expect(fetch.mock.calls.length).toEqual(1);
-      expect(fetch.mock.calls[0][0]).toEqual('http://localhost:10010/api/posts');
-    })
+      expect(global.fetch.mock.calls.length).toEqual(1);
+      expect(global.fetch.mock.calls[0][0]).toEqual('http://localhost:10010/api/posts');
+    });
   });
 });

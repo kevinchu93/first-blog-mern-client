@@ -18,13 +18,13 @@ let wrapper;
 describe('Posts - shallow', () => {
   beforeEach(() => {
     wrapper = shallow(<Posts />);
-    jest.resetAllMocks();
-    jest.restoreAllMocks();
-    fetch.resetMocks();
-    fetch.mockResponse(JSON.stringify([mockPosts[0]]));
-  });
-
-  afterEach(() => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: true,
+      body: true,
+      json: () => Promise.resolve([
+        mockPosts[0],
+      ]),
+    }));
   });
 
   test('Snapshot - Posts component should render as expected', () => {
@@ -40,6 +40,8 @@ describe('Posts - shallow', () => {
     jest.spyOn(Posts.prototype, 'componentDidMount');
     Posts.prototype.componentDidMount();
     expect(Posts.prototype.componentDidMount).toHaveBeenCalled();
+    Posts.prototype.componentDidMount.mockReset();
+    Posts.prototype.componentDidMount.mockRestore();
   });
   test('componentDidMount should call fetchData', () => {
     jest.spyOn(wrapper.instance(), 'fetchData');
@@ -48,8 +50,8 @@ describe('Posts - shallow', () => {
   });
   test('fetchData should call fetch with correct url', () => (
     wrapper.instance().fetchData().then(() => {
-      expect(fetch.mock.calls.length).toEqual(1);
-      expect(fetch.mock.calls[0][0]).toEqual('http://localhost:10010/api/posts');
+      expect(global.fetch.mock.calls.length).toEqual(1);
+      expect(global.fetch.mock.calls[0][0]).toEqual('http://localhost:10010/api/posts');
     })
   ));
   test('fetchData should modify state with fetch data', () => (
@@ -58,8 +60,8 @@ describe('Posts - shallow', () => {
     })
   ));
   test('fetchData should handle error when fetch rejects', () => {
-    fetch.resetMocks();
-    fetch.mockReject(new Error('fake error message'));
+    //    global.fetch.mockReset();
+    global.fetch.mockRejectedValue(new Error('fake error message'));
     wrapper = shallow(<Posts />);
     return wrapper.instance().fetchData().then((error) => {
       expect(wrapper.instance().state.posts).toEqual([]);
