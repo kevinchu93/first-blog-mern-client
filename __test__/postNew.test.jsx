@@ -21,9 +21,11 @@ describe('PostNew - shallow', () => {
   beforeEach(() => {
     wrapper = shallow(<PostNew.WrappedComponent history={history} />);
     global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: true,
+      body: true,
       json: () => Promise.resolve([
         mockPosts[0],
-      ])
+      ]),
     }));
   });
 
@@ -36,7 +38,7 @@ describe('PostNew - shallow', () => {
     expect(toJson(shallow(<PostNew />))).toMatchSnapshot();
   });
   test('handleSubmit should call fetch with correct url', () => {
-    const mockEvent= { preventDefault: jest.fn() };
+    const mockEvent = { preventDefault: jest.fn() };
     wrapper.instance().newPostTitle = { value: mockPosts[0].title };
     wrapper.instance().newPostBody = { value: mockPosts[0].body };
     return wrapper.instance().handleSubmit(mockEvent).then(() => {
