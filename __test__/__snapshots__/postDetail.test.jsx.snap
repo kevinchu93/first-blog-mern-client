@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostDetail - shallow PostDetail component should render as expected - snapshot 1`] = `
+<div>
+  <h2>
+    testtitle
+  </h2>
+  <p>
+    testbody
+  </p>
+  <p
+    id="author"
+  >
+    testAuthor
+  </p>
+</div>
+`;

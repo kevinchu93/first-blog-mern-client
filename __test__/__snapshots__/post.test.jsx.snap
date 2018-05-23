@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post - shallow Post component should render as expected - snapshot 1`] = `
+<li>
+  <h2>
+    <Link
+      className="title"
+      replace={false}
+      to="/posts/post_id"
+    >
+      title
+    </Link>
+  </h2>
+  <p>
+    body
+  </p>
+  <p
+    className="author"
+  >
+    author
+  </p>
+</li>
+`;

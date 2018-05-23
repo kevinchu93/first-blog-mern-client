@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import 'isomorphic-fetch';
+
+require('es6-promise').polyfill();
 
 class PostNew extends React.Component {
   constructor(props) {
@@ -10,7 +13,7 @@ class PostNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    fetch('http://localhost:10010/api/posts', {
+    return fetch('http://localhost:10010/api/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

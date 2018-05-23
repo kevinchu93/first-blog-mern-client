@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "npm run build",
     "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --mode development --port 1234 --history-api-fallback",
     "lint": "eslint --ext .js,.jsx ."
@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -19,18 +21,31 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^22.4.3",
     "style-loader": "^0.20.3",
-    "webpack": "^4.2.0",
+    "webpack": "^4.8.3",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "setupTestFrameworkScriptFile": "./__test__/setupTests.js",
+    "testEnvironment": "jsdom"
   }
 }
