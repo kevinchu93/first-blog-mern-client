@@ -27,6 +27,9 @@ describe('Posts - shallow', () => {
     }));
   });
 
+  afterEach(() => {
+  });
+
   test('Snapshot - Posts component should render as expected', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });

@@ -1,6 +1,7 @@
 /* eslint no-console: 0 */
 /* ask Eric if console.logging errors is best practices */
 import React from 'react';
+import 'isomorphic-fetch';
 import Post from './post';
 
 require('es6-promise').polyfill();

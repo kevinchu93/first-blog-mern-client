@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import 'isomorphic-fetch';
+
+require('es6-promise').polyfill();
 
 class PostNew extends React.Component {
   constructor(props) {
