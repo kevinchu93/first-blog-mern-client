@@ -2,8 +2,23 @@ sudo: required
 
 language: node_js
 node_js:
-- "node"
+- node
+
+services:
+- docker
+
+env:
+  global:
+  - secure: s5BYAj0i2j5D9UogXDcDxJFpO7ly9dWFjVFDaCJCHIp0ACWmlO1MTcW7tsdedfua8h5v+T3Z5/1zBznWKcTixEIGTk+cmnAkvugl0Ry6gDsrCPx29ssfMorrcH9VofUwFdUFNM9TnXAG71AcsOZz50wOUnNVYHMCgMD6Tkn8c3VGP1wdaCY6JJxn42vgzl5wgpOkNmFslYwUa1P0gn5PH50yVz7uNfyec0f3LNuqTfuhgjpRdW5NEvYe4SRMYm3rK8DwJa9xf1PEqL81KfbAdxXgQMo+We1RXAMjbV1DzpwNp6c9K/zfCi5Ljh4eru5VwBkdZuP+oTogQQjeDJPXvx5F55AR2241e2XxFtBddr7IdHpMqr6J1JU2Hl88brxFVePtlF/1gO3fIsFSC4Tn8LKTRCFWoNXimLUhZFBM1JqoZU0n9r+hg20Qn4/SWLTFUAtkfMMm1Nk7BcQU9aeEn33FKPBzAz5wYu7RozpSwyKChF4KIpcDf7hQbsn9BQQmP8EnCZHOeOVwYTxSb/k0nmLExwSAteMpzkbQiqZWKSGUuCGKN8+2DOaORS3nIa+m0UmOyFTja02+RZHyJ01hnAqWBTo87CCrec+v191Suh2ZegemWAXHjU4bp8f4PRH0s9QKp85huSZ2kxlQdj1fRaE+YI2YzEoYBILWeJxlB/8=
+  - secure: suoDChhpmH8zsKf1pyU/vA6Px9fFSfWN6va4qqTMCNQn8SOJwXm60UfcSefHFuo1FW3tGTCZwNs0lsPrpg/Pv4RLaTZZy2MQqTsnoVFZt7MYwIuZbtoihElO3M5fPdWGYcGONe6YRpRdvm1yKqvlBKo/h9y5SwybjCk3JbCtiAFV28UUPG/4dLOjIPcvame51jwCKICzf0Zm+m36bbOq7icXx/ZAfM0OfddscjQFcptAULSPivsBllePA865YsArqg6KVdcLt12HbgjfdEk48gntl8sFhnESTuqYQABF5A61XstWy5iW2WUClCQ2ajnpaYGIewR9ML5VxOefLmfHEMvWC8DR9ILNnE7yFfBEQoBmglkTbmmshP/Zxx+LGY5Tv1c6tlbtAmsd8QzcU0ydsmnUuuznVjI9aMY3QhRtQ690th+GrgqGbU+ZK1gZ0EgASRowmlYEppkwuoafiptslW3kV27fqYZXc3ifawoMdlsv8tbY7kPakP3ypdY9e/Mlldd82IoA85HIqFniTjORmA9mTyYDGQ23UswpVbN8T30HjT2RjW9shnr+vzXKhuTdCVk6xv0G0AaEru7M/atQp/TnovbNJX41REWbpl504+royrrYgvgUxY6LxxxDcIZdVHQTUtc3segrrZudPwPcoOV/A+ey/JND+w7ONspTRGs=
 
 script:
 - npm run lint
 - npm run test
+- docker build -t kevinchu/first-blog-mern-client .
+
+after_success:
+- if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u "$DOCKER_USERNAME" -p
+  "$DOCKER_PASSWORD";
+  docker push kevinchu/first-blog-mern-client;
+  fi
