@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "npm run build",
-    "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --mode development --port 1234 --history-api-fallback",
+    "build": "webpack -d && webpack-dev-server --host 0.0.0.0 --content-base src/ --inline --hot --mode development --port 1234 --history-api-fallback",
     "lint": "eslint --ext .js,.jsx ."
   },
   "author": "",
