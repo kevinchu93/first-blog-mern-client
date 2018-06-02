@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../header-vancouver.jpg';
 
 const Header = () => (
-  <div>
+  <div className="head">
     <div className="header">
       <h1 className="header__title">My First Blog</h1>
     </div>

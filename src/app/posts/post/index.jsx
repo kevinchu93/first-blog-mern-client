@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Post = props => (
-  <li>
-    <h2><Link className="title" to="/posts/post_id">{props.post.title}</Link></h2>
-    <p>{props.post.body}</p>
-    <p className="author">{props.post.author}</p>
+  <li className="post">
+    <Link className="post__title" to="/posts/post_id">{props.post.title}</Link>
+    <p className="post__body">{props.post.body}</p>
+    <p className="post__author">{props.post.author}</p>
   </li>
 );
 
